@@ -6,35 +6,37 @@ import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
 import com.example.demo.domain.service.kakao.message.json.common.Social;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class FeedObject extends MessageObject {
   @Valid
   @NotNull(message = "content 는 필수 입력값 입니다.")
   private Content content;
   @Valid
-  private ItemContent item_content;
+  private ItemContent itemContent;
   @Valid
   private Social social;
   @Valid
   private List<Button> buttons;
 
-  public FeedObject(String object_type, Content content, ItemContent item_content, Social social, List<Button> buttons) {
-    super.object_type = object_type;
+  public FeedObject(String objectType, Content content, ItemContent itemContent, Social social, List<Button> buttons) {
+    super.objectType = objectType;
     this.content = content;
-    this.item_content = item_content;
+    this.itemContent = itemContent;
     this.social = social;
     this.buttons = buttons;
   }
 
-  public FeedObject(Content content, ItemContent item_content, Social social, List<Button> buttons) {
+  public FeedObject(Content content, ItemContent itemContent, Social social, List<Button> buttons) {
     this.content = content;
-    this.item_content = item_content;
+    this.itemContent = itemContent;
     this.social = social;
     this.buttons = buttons;
   }

@@ -21,7 +21,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -68,8 +67,8 @@ public class KakaoMessageService {
 
   private void messageSendApiCall(User who, SendMessageRequest sendMessageRequest) {
     MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-    params.add("receiver_uuids", sendMessageRequest.getReceiver_uuids());
-    params.add("template_object", sendMessageRequest.getTemplate_object());
+    params.add("receiver_uuids", sendMessageRequest.getReceiverUuids());
+    params.add("template_object", sendMessageRequest.getTemplateObject());
 
     WebClient webClient = WebClient.builder()
             .baseUrl("https://kapi.kakao.com/v1/api/talk/friends/message/default/send")
@@ -92,7 +91,7 @@ public class KakaoMessageService {
    * 2. 요청한 유저가 group 의 소유자인가?
    */
   private void validation(User user, MessageObject messageObject, Group group, String template) {
-    if (!messageObject.object_type.equals(template)) throw new IllegalArgumentException("옳바르지 않은 템플릿입니다.");
+    if (!messageObject.objectType.equals(template)) throw new IllegalArgumentException("옳바르지 않은 템플릿입니다.");
     if (group.getUser() != user) throw new IllegalCallerException("해당 그룹의 소유자가 아닙니다.");
   }
 

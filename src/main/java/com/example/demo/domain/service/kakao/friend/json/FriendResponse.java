@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class FriendResponse {
     private List<Friend> elements;
-    private Integer total_count;
+    private Integer totalCount;
 }

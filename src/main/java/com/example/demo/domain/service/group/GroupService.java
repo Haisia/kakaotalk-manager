@@ -35,8 +35,8 @@ public class GroupService {
         user.getGroupList().forEach(group -> {
             GroupResponseDto dto = new GroupResponseDto();
             dto.setMembers(new ArrayList<>());
-            dto.setGroup_id(String.valueOf(group.getGroupId()));
-            dto.setGroup_name(group.getName());
+            dto.setGroupId(String.valueOf(group.getId()));
+            dto.setGroupName(group.getName());
 
             group.getGroupMemberList().forEach(groupMember -> {
                 dto.getMembers().add(new GroupResponseFriendDto(
@@ -54,11 +54,11 @@ public class GroupService {
     }
 
     public void addMember (GroupAddFriendDto dto, User user) throws Exception {
-        Group group = groupRepository.findById(Long.parseLong(dto.getGroup_id())).orElseThrow();
+        Group group = groupRepository.findById(Long.parseLong(dto.getGroupId())).orElseThrow();
         isValid(user, group);
 
         List<Friend> addFriends = new ArrayList<>();
-        dto.getFriend_uuid().forEach(uuid -> {
+        dto.getFriendUuid().forEach(uuid -> {
             Friend f = friendRepository.findByUuid(uuid).orElseThrow();
             if (!group.getGroupMemberList().contains(f)) {
                 addFriends.add(f);

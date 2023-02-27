@@ -15,7 +15,7 @@ public class Friend {
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private User user;      // 친구의 주인
+    private User user;
     
     private String uuid;
     private String profileImageUrl;

@@ -1,19 +1,21 @@
 package com.example.demo.domain.service.kakao.message.json.feed;
 
 import jakarta.validation.Valid;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class ItemContent {
-  private String profile_text;
-  private String profile_image_url;
-  private String title_image_url;
-  private String title_image_text;
-  private String title_image_category;
+  private String profileText;
+  private String profileImageUrl;
+  private String titleImageUrl;
+  private String titleImageText;
+  private String titleImageCategory;
   @Valid
   private List<Item> items;
   private String sum;
-  private String sum_op;
+  private String sumOp;
 }

@@ -1,12 +1,14 @@
 package com.example.demo.domain.service.kakao.oauth.json;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserProfile {
 
     private String id;
-    private KakaoAccount kakao_account;
+    private KakaoAccount kakaoAccount;
 
 }
 

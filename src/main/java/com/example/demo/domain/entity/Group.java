@@ -9,17 +9,9 @@ import java.util.List;
 @Entity
 @Table(name = "CUSTOM_GROUP")
 public class Group {
-
-    protected Group() {}
-
-    public Group(User user, String name) {
-      this.user = user;
-      this.name = name;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long groupId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
@@ -31,4 +23,11 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private List<GroupMember> groupMemberList;
+
+    protected Group() {}
+
+    public Group(User user, String name) {
+        this.user = user;
+        this.name = name;
+    }
 }

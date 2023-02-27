@@ -2,9 +2,11 @@ package com.example.demo.domain.service.kakao.message.json.location;
 import com.example.demo.domain.service.kakao.message.json.common.SendMessageParam;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class SendMessageLocationParam extends SendMessageParam {
   @Valid
   @NotNull(message = "locationObject 는 필수 입력값 입니다.")

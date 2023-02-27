@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class GroupResponseDto {
-    private String group_name;
-    private String group_id;
+    private String groupName;
+    private String groupId;
     List<GroupResponseFriendDto> members;
 }

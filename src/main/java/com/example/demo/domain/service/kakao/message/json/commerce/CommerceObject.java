@@ -5,11 +5,13 @@ import com.example.demo.domain.service.kakao.message.json.common.Content;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class CommerceObject extends MessageObject {
   @Valid
   @NotNull(message = "content 는 필수 입력값 입니다.")
@@ -19,8 +21,8 @@ public class CommerceObject extends MessageObject {
   private Commerce commerce;
   private List<Button> buttons;
 
-  public CommerceObject(String object_type, Content content, Commerce commerce, List<Button> buttons) {
-    super.object_type = object_type;
+  public CommerceObject(String objectType, Content content, Commerce commerce, List<Button> buttons) {
+    super.objectType = objectType;
     this.content = content;
     this.commerce = commerce;
     this.buttons = buttons;

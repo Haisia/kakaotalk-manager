@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class Friend {
     private String uuid;
-    private String profile_thumbnail_image;
-    private String profile_nickname;
+    private String profileThumbnailImage;
+    private String profileNickname;
 }
