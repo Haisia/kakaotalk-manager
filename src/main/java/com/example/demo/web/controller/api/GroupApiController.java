@@ -31,6 +31,7 @@ public class GroupApiController {
         return ResponseEntity.ok("OK");
     }
 
+    // TODO : 파라미터 상관없이 200 떨어지는거 수정하기.
     @PostMapping
     public HttpEntity<?> createGroup (@RequestBody GroupDto groupData, User user) {
         groupService.create(user, groupData);

@@ -2,8 +2,11 @@ package com.example.demo.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
+
+import static org.hibernate.annotations.CascadeType.*;
 
 @Data
 @Entity
@@ -22,6 +25,7 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group")
+    @Cascade(ALL)
     private List<GroupMember> groupMemberList;
 
     protected Group() {}
