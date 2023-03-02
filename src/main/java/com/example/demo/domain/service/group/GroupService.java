@@ -8,9 +8,6 @@ import com.example.demo.domain.entity.User;
 import com.example.demo.domain.repository.FriendRepository;
 import com.example.demo.domain.repository.GroupMemberRepository;
 import com.example.demo.domain.repository.GroupRepository;
-import com.example.demo.domain.service.group.dto.GroupAddFriendDto;
-import com.example.demo.domain.service.group.dto.GroupResponseDto;
-import com.example.demo.domain.service.group.dto.GroupResponseFriendDto;
 import com.example.demo.web.controller.exception.custom.PermissionException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -29,17 +26,17 @@ public class GroupService {
     private final GroupMemberRepository groupMemberRepository;
     private final FriendRepository friendRepository;
 
-    public List<GroupResponseDto> get (User user) {
-        List<GroupResponseDto> result = new ArrayList<>();
+    public List<GroupDto.ResponseDto> get (User user) {
+        List<GroupDto.ResponseDto> result = new ArrayList<>();
 
         user.getGroupList().forEach(group -> {
-            GroupResponseDto dto = new GroupResponseDto();
+            GroupDto.ResponseDto dto = new GroupDto.ResponseDto();
             dto.setMembers(new ArrayList<>());
             dto.setGroupId(String.valueOf(group.getId()));
             dto.setGroupName(group.getName());
 
             group.getGroupMemberList().forEach(groupMember -> {
-                dto.getMembers().add(new GroupResponseFriendDto(
+                dto.getMembers().add(new GroupDto.ResponseFriendDto(
                         groupMember.getFriend().getNickname(),
                         groupMember.getFriend().getUuid(),
                         groupMember.getFriend().getUuid()));
@@ -53,7 +50,7 @@ public class GroupService {
         return groupRepository.save(new Group(user, dto.getName()));
     }
 
-    public void addMember (GroupAddFriendDto dto, User user) throws Exception {
+    public void addMember (GroupDto.GroupAddFriendDto dto, User user) throws Exception {
         Group group = groupRepository.findById(Long.parseLong(dto.getGroupId())).orElseThrow();
         isValid(user, group);
 

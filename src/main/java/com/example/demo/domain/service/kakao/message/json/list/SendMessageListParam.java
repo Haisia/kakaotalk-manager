@@ -2,6 +2,7 @@ package com.example.demo.domain.service.kakao.message.json.list;
 import com.example.demo.domain.service.kakao.message.json.common.SendMessageParam;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

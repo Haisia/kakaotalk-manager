@@ -1,5 +1,6 @@
 package com.example.demo.domain.service.kakao.message.json.common;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Link {
+  @JsonAlias({"webUrl","web_url"})
   private String webUrl;
+  @JsonAlias({"mobileWebUrl","mobile_web_url"})
   private String mobileWebUrl;
+  @JsonAlias({"androidExecutionParams","android_execution_params"})
   private String androidExecutionParams;
+  @JsonAlias({"iosExecutionParams","ios_execution_params"})
   private String iosExecutionParams;
 
   public boolean isNotBlankAnyOne(){

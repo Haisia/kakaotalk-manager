@@ -3,7 +3,6 @@ package com.example.demo.web.controller.api;
 import com.example.demo.domain.dto.GroupDto;
 import com.example.demo.domain.entity.User;
 import com.example.demo.domain.service.group.GroupService;
-import com.example.demo.domain.service.group.dto.GroupAddFriendDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,7 @@ public class GroupApiController {
     }
 
     @PostMapping("/add")
-    public HttpEntity<?> addMember (@RequestBody GroupAddFriendDto data, User user) throws Exception {
+    public HttpEntity<?> addMember (@RequestBody GroupDto.GroupAddFriendDto data, User user) throws Exception {
         groupService.addMember(data, user);
         return ResponseEntity.ok("OK");
     }

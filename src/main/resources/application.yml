@@ -26,7 +26,7 @@ spring:
 
 oauth:
   kakao:
-    client_id: ecd4743fb9997e0a6eae10908eee37de
-    secret_id: qJzb7yQGYpNxBfTzU18maTFV8Zd2LKiY
+    client_id: d02cc26dfed4b9e8dfb9e49a50b90ff3
+    secret_id: apc3QffqOdNXbVsPo25b3tUwU0p3uyVc
     redirect_url: http://localhost:8080/auth/kakao
 

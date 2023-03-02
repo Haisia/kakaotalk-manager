@@ -3,6 +3,7 @@ package com.example.demo.domain.service.kakao.message.json.location;
 import com.example.demo.domain.service.kakao.message.json.common.Button;
 import com.example.demo.domain.service.kakao.message.json.common.Content;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class LocationObject extends MessageObject {
   private List<Button> buttons;
   @NotBlank(message = "address 는 필수 입력값 입니다.")
   private String address;
+  @JsonAlias({"addressTitle","address_title"})
   private String addressTitle;
 
   public LocationObject(String objectType, Content content, List<Button> buttons, String address, String addressTitle) {

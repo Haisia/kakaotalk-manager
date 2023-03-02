@@ -4,6 +4,7 @@ import com.example.demo.domain.service.kakao.message.json.common.Button;
 import com.example.demo.domain.service.kakao.message.json.common.Content;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
 import com.example.demo.domain.service.kakao.message.json.common.Social;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class FeedObject extends MessageObject {
   @NotNull(message = "content 는 필수 입력값 입니다.")
   private Content content;
   @Valid
+  @JsonAlias({"itemContent","item_content"})
   private ItemContent itemContent;
   @Valid
   private Social social;

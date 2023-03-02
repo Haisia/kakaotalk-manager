@@ -5,6 +5,7 @@ import com.example.demo.domain.service.kakao.message.json.common.Content;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

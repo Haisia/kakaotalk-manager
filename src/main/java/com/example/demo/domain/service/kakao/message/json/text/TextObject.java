@@ -3,6 +3,7 @@ package com.example.demo.domain.service.kakao.message.json.text;
 import com.example.demo.domain.service.kakao.message.json.common.Button;
 import com.example.demo.domain.service.kakao.message.json.common.Link;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public class TextObject extends MessageObject {
     @Valid
     @NotNull(message = "link 는 필수 입력값 입니다.")
     private Link link;
+    @JsonAlias({"buttonTitle","button_title"})
     private String buttonTitle;
     @Valid
     private List<Button> buttons;
