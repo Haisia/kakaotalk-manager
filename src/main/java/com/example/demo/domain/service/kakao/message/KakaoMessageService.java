@@ -7,7 +7,9 @@ import com.example.demo.domain.service.kakao.message.json.SendMessageRequest;
 import com.example.demo.domain.service.kakao.message.json.SendMessageResponse;
 import com.example.demo.domain.service.kakao.message.json.common.MessageObject;
 import com.example.demo.domain.service.kakao.message.json.common.SendMessageParam;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,7 +28,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class KakaoMessageService {
   private static final int MAXIMUM_RECEIVER_PER_ONETIME = 5;
-  private final Gson gson;
   private final GroupRepository groupRepository;
 
   /**
@@ -46,20 +47,22 @@ public class KakaoMessageService {
   }
 
   private List<SendMessageRequest> getSendMessageRequestList(Group group, MessageObject message) {
+    Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+
     List<String> receiver = group.getGroupMemberList()
                     .stream()
                     .map(groupMember -> groupMember.getFriend().getUuid())
                     .toList();
 
-    List<String> receiver_uuid = new ArrayList<>();
+    List<String> receiverUuid = new ArrayList<>();
     List<SendMessageRequest> result = new ArrayList<>();
     for (int i = 0; i < receiver.size(); i++) {
-      receiver_uuid.add(receiver.get(i));
+      receiverUuid.add(receiver.get(i));
 
-      if (receiver_uuid.size() >= MAXIMUM_RECEIVER_PER_ONETIME || i == receiver.size() - 1) {
-        SendMessageRequest sendMessageRequest = new SendMessageRequest(gson.toJson(receiver_uuid), gson.toJson(message));
+      if (receiverUuid.size() >= MAXIMUM_RECEIVER_PER_ONETIME || i == receiver.size() - 1) {
+        SendMessageRequest sendMessageRequest = new SendMessageRequest(gson.toJson(receiverUuid), gson.toJson(message));
         result.add(sendMessageRequest);
-        receiver_uuid.clear();
+        receiverUuid.clear();
       }
     }
     return result;

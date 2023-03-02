@@ -44,9 +44,4 @@ public class KakaoAuthCallback {
 
         return ResponseEntity.ok(JwtProvider.generate(login));
     }
-
-//    @ExceptionHandler(NoSuchElementException.class)
-//    public HttpEntity<?> noSuchElementExceptionHandler (RuntimeException ex) {
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//    }
 }
