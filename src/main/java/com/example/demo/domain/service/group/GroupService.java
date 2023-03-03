@@ -56,7 +56,7 @@ public class GroupService {
         return groupRepository.save(new Group(user, dto.getName()));
     }
 
-    public void addMember (GroupDto.GroupAddFriendDto dto, User user) throws Exception {
+    public void addMember (GroupDto.GroupAddFriendDto dto, User user) {
         Group group = groupRepository.findByIdAndUserId(dto.getGroupId(), user.getId()).orElseThrow();
 
         List<String> friendUuid = dto.getFriendUuid();
@@ -67,29 +67,14 @@ public class GroupService {
     }
 
     @Transactional
-    public void delete (Long id, User user) throws Exception {
-        Group group = groupRepository.findById(id).orElseThrow();
-        isValid(user, group);
-
+    public void delete (Long groupId, User user){
+        Group group = groupRepository.findByIdAndUserId(groupId, user.getId()).orElseThrow();
         groupRepository.delete(group);
     }
 
     @Transactional
-    public void modify (Long id, GroupDto groupDto, User user) throws Exception {
-        Group findGroup = groupRepository.findById(id).orElseThrow();
-        isValid(user, findGroup);
-
-        findGroup.setName(groupDto.getName());
-    }
-
-    /**
-     *  isValid : 해당 유저가 그룹의 주인인지 확인하는 메소드
-     *
-     * @param user
-     * @param group
-     * @throws Exception user가 group의 주인이 아닐 때 발생
-     */
-    private void isValid (User user, Group group) throws Exception {
-        if (!group.getUser().equals(user)) throw new PermissionException();
+    public void modify (Long groupId, GroupDto groupDto, User user) throws Exception {
+        Group group = groupRepository.findByIdAndUserId(groupId, user.getId()).orElseThrow();
+        group.setName(groupDto.getName());
     }
 }
