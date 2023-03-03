@@ -1,12 +1,14 @@
 package com.example.demo.domain.service.group.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class GroupResponseFriendDto {
     private String name;
     private String uuid;
-    private String profile_image_url;
+    private String profileImageUrl;
 }

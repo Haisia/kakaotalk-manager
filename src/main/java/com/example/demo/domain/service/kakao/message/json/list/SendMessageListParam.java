@@ -3,8 +3,11 @@ import com.example.demo.domain.service.kakao.message.json.common.SendMessagePara
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class SendMessageListParam extends SendMessageParam {
   @Valid
   @NotNull(message = "listObject 는 필수 입력값 입니다.")

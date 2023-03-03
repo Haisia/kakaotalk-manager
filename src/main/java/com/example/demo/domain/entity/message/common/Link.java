@@ -26,5 +26,4 @@ public class Link {
   @JoinColumn(name = "content_id")
   @ToString.Exclude
   private Content content;
-
 }

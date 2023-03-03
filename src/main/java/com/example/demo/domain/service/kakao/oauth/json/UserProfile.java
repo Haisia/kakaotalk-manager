@@ -1,12 +1,16 @@
 package com.example.demo.domain.service.kakao.oauth.json;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class UserProfile {
 
     private String id;
-    private KakaoAccount kakao_account;
+    @JsonAlias({"kakaoAccount","kakao_account"})
+    private KakaoAccount kakaoAccount;
 
 }
 

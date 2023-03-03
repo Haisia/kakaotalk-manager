@@ -42,7 +42,7 @@ public class AuthService {
         UserProfile userProfile = null;
         
         token = kakaoService.getAuthService().getToken(code);
-        userProfile = kakaoService.getAuthService().getProfile(token.getAccess_token());
+        userProfile = kakaoService.getAuthService().getProfile(token.getAccessToken());
 
         Optional<User> userOptional = userRepository.findByUuid(userProfile.getId());
         if (userOptional.isPresent()) {
@@ -54,10 +54,10 @@ public class AuthService {
             return userOptional;
         }
 
-        User user = userRepository.save(new User(token.getScope(), token.getAccess_token(), token.getRefresh_token(),
-                userProfile.getId(), userProfile.getKakao_account().getProfile().getNickname(),
-                userProfile.getKakao_account().getEmail(),
-                userProfile.getKakao_account().getProfile().getThumbnail_image_url()));
+        User user = userRepository.save(new User(token.getScope(), token.getAccessToken(), token.getRefreshToken(),
+                userProfile.getId(), userProfile.getKakaoAccount().getProfile().getNickname(),
+                userProfile.getKakaoAccount().getEmail(),
+                userProfile.getKakaoAccount().getProfile().getThumbnailImageUrl()));
         initFriend(user);
         return Optional.of(user);
     }
@@ -66,8 +66,8 @@ public class AuthService {
     private void initFriend (User user) {
         FriendResponse friends = kakaoService.getFriendService().getFriendsTest(user, 0, 100);
         friends.getElements().forEach(friend -> {
-            log.info("[AuthService-login friend] " + friend.getProfile_nickname());
-            friendRepository.save(new Friend(user, friend.getUuid(), friend.getProfile_thumbnail_image(), friend.getProfile_nickname()));
+            log.info("[AuthService-login friend] " + friend.getProfileNickname());
+            friendRepository.save(new Friend(user, friend.getUuid(), friend.getProfileThumbnailImage(), friend.getProfileNickname()));
         });
     }
 }

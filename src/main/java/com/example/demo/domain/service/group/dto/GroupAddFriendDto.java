@@ -1,12 +1,14 @@
 package com.example.demo.domain.service.group.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class GroupAddFriendDto {
 
-    private List<String> friend_uuid;
-    private String group_id;
+    private List<String> friendUuid;
+    private String groupId;
 }

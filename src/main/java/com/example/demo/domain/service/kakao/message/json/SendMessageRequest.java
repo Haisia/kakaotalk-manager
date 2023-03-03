@@ -1,11 +1,16 @@
 package com.example.demo.domain.service.kakao.message.json;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class SendMessageRequest {
-    private String receiver_uuids;
-    private String template_object;
+    @JsonAlias({"receiverUuids","receiver_uuids"})
+    private String receiverUuids;
+    @JsonAlias({"templateObject","template_object"})
+    private String templateObject;
 }

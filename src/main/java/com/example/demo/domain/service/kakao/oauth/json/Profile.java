@@ -1,10 +1,15 @@
 package com.example.demo.domain.service.kakao.oauth.json;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Profile {
     private String nickname;
-    private String profile_image_url;
-    private String thumbnail_image_url;
+    @JsonAlias({"profileImageUrl","profile_image_url"})
+    private String profileImageUrl;
+    @JsonAlias({"thumbnailImageUrl","thumbnail_image_url"})
+    private String thumbnailImageUrl;
 }

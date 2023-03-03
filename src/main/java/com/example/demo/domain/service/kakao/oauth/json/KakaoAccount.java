@@ -1,8 +1,10 @@
 package com.example.demo.domain.service.kakao.oauth.json;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class KakaoAccount {
     private Profile profile;
     private String email;

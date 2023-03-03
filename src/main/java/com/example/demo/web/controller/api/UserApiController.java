@@ -3,9 +3,7 @@ package com.example.demo.web.controller.api;
 import com.example.demo.domain.dto.FriendDto;
 import com.example.demo.domain.entity.Friend;
 import com.example.demo.domain.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +32,8 @@ public class UserApiController {
         return friends;
     }
 
-    @Data
+    @Getter
+    @Setter
     @AllArgsConstructor
     static class ProfileDto {
         private String name;

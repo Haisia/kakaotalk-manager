@@ -1,13 +1,21 @@
 package com.example.demo.domain.service.kakao.oauth.json;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class OauthToken {
-    private String access_token;
-    private String token_type;
-    private String refresh_token;
+    @JsonAlias({"accessToken","access_token"})
+    private String accessToken;
+    @JsonAlias({"tokenType","token_type"})
+    private String tokenType;
+    @JsonAlias({"refreshToken","refresh_token"})
+    private String refreshToken;
     private String scope;
-    private int refresh_token_expires_in;
-    private int expires_in;
+    @JsonAlias({"refreshTokenExpiresIn","refresh_token_expires_in"})
+    private int refreshTokenExpiresIn;
+    @JsonAlias({"expiresIn","expires_in"})
+    private int expiresIn;
 }
