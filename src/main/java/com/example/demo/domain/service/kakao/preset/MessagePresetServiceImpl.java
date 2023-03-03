@@ -31,10 +31,6 @@ public class MessagePresetServiceImpl implements MessagePresetService{
   public List<FeedObject> getPresetList(Long userId) {
     List<FeedMessagePreset> findList = feedMessagePresetRepository.findByUserId(userId);
 
-//    modelMapper.typeMap(Button.class, com.example.demo.domain.service.kakao.message.json.common.Button.class).addMappings(mapping ->{
-//      mapping.map(, FeedObject::setButtons);
-//    });
-
     modelMapper.getConfiguration()
             .setSourceNameTokenizer(NameTokenizers.CAMEL_CASE)
             .setDestinationNameTokenizer(NameTokenizers.UNDERSCORE);
