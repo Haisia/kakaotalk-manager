@@ -21,7 +21,7 @@ public class GroupDto {
     public static class GroupAddFriendDto {
 
         private List<String> friendUuid;
-        private String groupId;
+        private Long groupId;
     }
 
     @Getter

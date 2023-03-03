@@ -57,18 +57,13 @@ public class GroupService {
     }
 
     public void addMember (GroupDto.GroupAddFriendDto dto, User user) throws Exception {
-        Group group = groupRepository.findById(Long.parseLong(dto.getGroupId())).orElseThrow();
-        isValid(user, group);
+        Group group = groupRepository.findByIdAndUserId(dto.getGroupId(), user.getId()).orElseThrow();
 
-        List<Friend> addFriends = new ArrayList<>();
-        dto.getFriendUuid().forEach(uuid -> {
-            Friend f = friendRepository.findByUuid(uuid).orElseThrow();
-            if (!group.getGroupMemberList().contains(f)) {
-                addFriends.add(f);
-            }
-        });
-
-        addFriends.forEach(friend -> { groupMemberRepository.save(new GroupMember(group, friend)); });
+        List<String> friendUuid = dto.getFriendUuid();
+        for (String uuid : friendUuid) {
+            Friend friend = friendRepository.findByUuid(uuid).orElseThrow();
+            groupMemberRepository.save(new GroupMember(group, friend));
+        }
     }
 
     @Transactional
