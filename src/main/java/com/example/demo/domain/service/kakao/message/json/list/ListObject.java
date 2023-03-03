@@ -9,12 +9,14 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ListObject extends MessageObject {
   @NotBlank(message = "header_title 는 필수 입력값 입니다.")
   @JsonAlias({"headerTitle","header_title"})

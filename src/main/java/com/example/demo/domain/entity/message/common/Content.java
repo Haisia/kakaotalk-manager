@@ -1,8 +1,11 @@
 package com.example.demo.domain.entity.message.common;
 
+import com.example.demo.domain.entity.message.commerce.CommerceMessagePreset;
+import com.example.demo.domain.entity.message.list.ListMessagePreset;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -25,4 +28,14 @@ public class Content {
 
   @OneToOne(mappedBy = "content", cascade = CascadeType.ALL)
   private Link link;
+
+  @JoinColumn(name = "list_message_preset")
+  @ManyToOne(cascade = CascadeType.ALL)
+  @ToString.Exclude
+  private ListMessagePreset listMessagePreset;
+
+  @JoinColumn(name = "commerce_message_preset")
+  @OneToOne(cascade = CascadeType.ALL)
+  @ToString.Exclude
+  private CommerceMessagePreset commerceMessagePreset;
 }

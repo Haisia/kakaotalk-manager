@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FeedMessagePresetRepository extends JpaRepository<FeedMessagePreset,Long>, FeedMessagePresetCustomRepository {
-  List<FeedMessagePreset> findByUserId(Long userId);
+  List<FeedMessagePreset> findAllByUserId(Long userId);
   Optional<FeedMessagePreset> findByIdAndUserId(Long id, Long userId);
 
 }
