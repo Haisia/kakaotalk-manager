@@ -17,7 +17,7 @@ public class Content {
   @Column(name = "description")
   private String description;
   @Column(name = "image_url")
-  private String imageURL;
+  private String imageUrl;
   @Column(name = "image_width")
   private Long imageWidth;
   @Column(name = "image_height")

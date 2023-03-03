@@ -56,10 +56,6 @@ public class MessagePresetServiceImpl implements MessagePresetService{
       button.setFeedMessagePreset(feedMessagePreset);
     }
 
-    for (Button button : feedMessagePreset.getButtons()) {
-      button.setFeedMessagePreset(feedMessagePreset);
-    }
-
     feedMessagePresetRepository.save(feedMessagePreset);
 
     List<Button> buttons = feedMessagePreset.getButtons();
