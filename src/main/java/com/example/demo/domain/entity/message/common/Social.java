@@ -1,6 +1,6 @@
 package com.example.demo.domain.entity.message.common;
 
-import com.example.demo.domain.entity.message.feed.FeedMessagePreset;
+import com.example.demo.domain.entity.message.feed.FeedMessage;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ public class Social {
   private Long viewCount;
   private Long subscriberCount;
   @OneToOne
-  @JoinColumn(name = "feed_message_preset_id")
+  @JoinColumn(name = "feed_message_id")
   @ToString.Exclude
-  private FeedMessagePreset feedMessagePreset;
+  private FeedMessage feedMessage;
 }

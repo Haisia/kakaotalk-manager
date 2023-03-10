@@ -3,7 +3,7 @@ package com.example.demo.domain.entity.message.list;
 import com.example.demo.domain.entity.message.common.Button;
 import com.example.demo.domain.entity.message.common.Content;
 import com.example.demo.domain.entity.message.common.Link;
-import com.example.demo.domain.entity.message.common.MessagePreset;
+import com.example.demo.domain.entity.message.common.Message;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @DiscriminatorValue("list")
-public class ListMessagePreset extends MessagePreset {
+public class ListMessage extends Message {
 
   private String headerTitle;
 
@@ -24,9 +24,9 @@ public class ListMessagePreset extends MessagePreset {
   @ToString.Exclude
   private Link headerLink;
 
-  @OneToMany(mappedBy = "listMessagePreset")
+  @OneToMany(mappedBy = "listMessage")
   private List<Content> contents;
 
-  @OneToMany(mappedBy = "listMessagePreset")
+  @OneToMany(mappedBy = "listMessage")
   private List<Button> buttons;
 }

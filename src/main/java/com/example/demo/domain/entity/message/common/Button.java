@@ -1,9 +1,9 @@
 package com.example.demo.domain.entity.message.common;
 
-import com.example.demo.domain.entity.message.commerce.CommerceMessagePreset;
-import com.example.demo.domain.entity.message.feed.FeedMessagePreset;
-import com.example.demo.domain.entity.message.list.ListMessagePreset;
-import com.example.demo.domain.entity.message.location.LocationMessagePreset;
+import com.example.demo.domain.entity.message.commerce.CommerceMessage;
+import com.example.demo.domain.entity.message.feed.FeedMessage;
+import com.example.demo.domain.entity.message.list.ListMessage;
+import com.example.demo.domain.entity.message.location.LocationMessage;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,23 +23,23 @@ public class Button {
   private Link link;
 
   @ManyToOne
-  @JoinColumn(name = "feed_message_preset_id")
+  @JoinColumn(name = "feed_message_id")
   @ToString.Exclude
-  private FeedMessagePreset feedMessagePreset;
+  private FeedMessage feedMessage;
 
   @ManyToOne
-  @JoinColumn(name = "list_message_preset_id")
+  @JoinColumn(name = "list_message_id")
   @ToString.Exclude
-  private ListMessagePreset listMessagePreset;
+  private ListMessage listMessage;
 
   @ManyToOne
-  @JoinColumn(name = "location_message_preset_id")
+  @JoinColumn(name = "location_message_id")
   @ToString.Exclude
-  private LocationMessagePreset locationMessagePreset;
+  private LocationMessage locationMessage;
 
   @ManyToOne
-  @JoinColumn(name = "commerce_message_preset_id")
+  @JoinColumn(name = "commerce_message_id")
   @ToString.Exclude
-  private CommerceMessagePreset commerceMessagePreset;
+  private CommerceMessage commerceMessage;
 
 }

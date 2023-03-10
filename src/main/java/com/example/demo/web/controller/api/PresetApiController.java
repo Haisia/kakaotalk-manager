@@ -1,11 +1,11 @@
 package com.example.demo.web.controller.api;
 
 import com.example.demo.domain.entity.User;
-import com.example.demo.domain.entity.message.commerce.CommerceMessagePreset;
-import com.example.demo.domain.entity.message.feed.FeedMessagePreset;
-import com.example.demo.domain.entity.message.list.ListMessagePreset;
-import com.example.demo.domain.entity.message.location.LocationMessagePreset;
-import com.example.demo.domain.entity.message.text.TextMessagePreset;
+import com.example.demo.domain.entity.message.commerce.CommerceMessage;
+import com.example.demo.domain.entity.message.feed.FeedMessage;
+import com.example.demo.domain.entity.message.list.ListMessage;
+import com.example.demo.domain.entity.message.location.LocationMessage;
+import com.example.demo.domain.entity.message.text.TextMessage;
 import com.example.demo.domain.service.kakao.message.json.commerce.CommerceObject;
 import com.example.demo.domain.service.kakao.message.json.feed.FeedObject;
 import com.example.demo.domain.service.kakao.message.json.list.ListObject;
@@ -26,9 +26,11 @@ public class PresetApiController {
   private final MessagePresetService messagePresetService;
 
   @PostMapping("/feed/save")
-  public HttpEntity<?> saveFeedPreset(User user, @RequestBody FeedMessagePreset feedMessagePreset) {
-    feedMessagePreset.setUser(user);
-    messagePresetService.savePreset(feedMessagePreset, "feed");
+  public HttpEntity<?> saveFeedPreset(User user, @RequestBody FeedMessage feedMessage) {
+    feedMessage.setUser(user);
+    feedMessage.setPurpose("preset");
+
+    messagePresetService.savePreset(feedMessage, "feed");
     return ResponseEntity.ok().build();
   }
 
@@ -38,9 +40,11 @@ public class PresetApiController {
   }
 
   @PostMapping("/list/save")
-  public HttpEntity<?> saveListPreset(User user, @RequestBody ListMessagePreset listMessagePreset) {
-    listMessagePreset.setUser(user);
-    messagePresetService.savePreset(listMessagePreset, "list");
+  public HttpEntity<?> saveListPreset(User user, @RequestBody ListMessage listMessage) {
+    listMessage.setUser(user);
+    listMessage.setPurpose("preset");
+
+    messagePresetService.savePreset(listMessage, "list");
     return ResponseEntity.ok().build();
   }
 
@@ -50,9 +54,11 @@ public class PresetApiController {
   }
 
   @PostMapping("/location/save")
-  public HttpEntity<?> saveLocationPreset(User user, @RequestBody LocationMessagePreset locationMessagePreset) {
-    locationMessagePreset.setUser(user);
-    messagePresetService.savePreset(locationMessagePreset, "location");
+  public HttpEntity<?> saveLocationPreset(User user, @RequestBody LocationMessage locationMessage) {
+    locationMessage.setUser(user);
+    locationMessage.setPurpose("preset");
+
+    messagePresetService.savePreset(locationMessage, "location");
     return ResponseEntity.ok().build();
   }
 
@@ -62,9 +68,11 @@ public class PresetApiController {
   }
 
   @PostMapping("/commerce/save")
-  public HttpEntity<?> saveCommercePreset(User user, @RequestBody CommerceMessagePreset commerceMessagePreset) {
-    commerceMessagePreset.setUser(user);
-    messagePresetService.savePreset(commerceMessagePreset, "commerce");
+  public HttpEntity<?> saveCommercePreset(User user, @RequestBody CommerceMessage commerceMessage) {
+    commerceMessage.setUser(user);
+    commerceMessage.setPurpose("preset");
+
+    messagePresetService.savePreset(commerceMessage, "commerce");
     return ResponseEntity.ok().build();
   }
 
@@ -74,9 +82,11 @@ public class PresetApiController {
   }
 
   @PostMapping("/text/save")
-  public HttpEntity<?> saveTextPreset(User user, @RequestBody TextMessagePreset textMessagePreset) {
-    textMessagePreset.setUser(user);
-    messagePresetService.savePreset(textMessagePreset, "text");
+  public HttpEntity<?> saveTextPreset(User user, @RequestBody TextMessage textMessage) {
+    textMessage.setUser(user);
+    textMessage.setPurpose("preset");
+
+    messagePresetService.savePreset(textMessage, "text");
     return ResponseEntity.ok().build();
   }
 
@@ -84,5 +94,4 @@ public class PresetApiController {
   public List<TextObject> getTextPresetList(User user) {
     return messagePresetService.getTextPresetList(user.getId());
   }
-
 }

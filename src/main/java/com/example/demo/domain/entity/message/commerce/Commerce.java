@@ -17,8 +17,8 @@ public class Commerce {
   private Long discountPrice;
   private Long discountRate;
 
-  @JoinColumn(name = "comerce_message_preset_id")
+  @JoinColumn(name = "comerce_message_id")
   @OneToOne(cascade = CascadeType.ALL)
   @ToString.Exclude
-  private CommerceMessagePreset commerceMessagePreset;
+  private CommerceMessage commerceMessage;
 }

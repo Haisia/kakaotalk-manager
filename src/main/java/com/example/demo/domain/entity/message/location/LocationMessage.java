@@ -2,7 +2,7 @@ package com.example.demo.domain.entity.message.location;
 
 import com.example.demo.domain.entity.message.common.Button;
 import com.example.demo.domain.entity.message.common.Content;
-import com.example.demo.domain.entity.message.common.MessagePreset;
+import com.example.demo.domain.entity.message.common.Message;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,12 +14,12 @@ import java.util.List;
 @Setter
 @Entity
 @DiscriminatorValue("location")
-public class LocationMessagePreset extends MessagePreset {
+public class LocationMessage extends Message {
   @JoinColumn(name = "content_id")
   @OneToOne(cascade = CascadeType.ALL)
   @ToString.Exclude
   private Content content;
-  @OneToMany(mappedBy = "locationMessagePreset")
+  @OneToMany(mappedBy = "locationMessage")
   private List<Button> buttons;
   private String address;
   private String addressTitle;

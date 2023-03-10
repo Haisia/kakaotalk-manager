@@ -2,7 +2,7 @@ package com.example.demo.domain.entity.message.commerce;
 
 import com.example.demo.domain.entity.message.common.Button;
 import com.example.demo.domain.entity.message.common.Content;
-import com.example.demo.domain.entity.message.common.MessagePreset;
+import com.example.demo.domain.entity.message.common.Message;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,12 +15,12 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("commerce")
 @NoArgsConstructor
-public class CommerceMessagePreset extends MessagePreset {
-  @OneToOne(mappedBy = "commerceMessagePreset", cascade = CascadeType.ALL)
+public class CommerceMessage extends Message {
+  @OneToOne(mappedBy = "commerceMessage", cascade = CascadeType.ALL)
   private Content content;
-  @OneToOne(mappedBy = "commerceMessagePreset", cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "commerceMessage", cascade = CascadeType.ALL)
   private Commerce commerce;
-  @OneToMany(mappedBy = "commerceMessagePreset", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "commerceMessage", cascade = CascadeType.ALL)
   private List<Button> buttons;
 
 }

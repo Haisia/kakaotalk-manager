@@ -1,13 +1,13 @@
 package com.example.demo.domain.service.kakao.preset;
 
 import com.example.demo.domain.entity.message.commerce.Commerce;
-import com.example.demo.domain.entity.message.commerce.CommerceMessagePreset;
+import com.example.demo.domain.entity.message.commerce.CommerceMessage;
 import com.example.demo.domain.entity.message.common.*;
-import com.example.demo.domain.entity.message.feed.FeedMessagePreset;
+import com.example.demo.domain.entity.message.feed.FeedMessage;
 import com.example.demo.domain.entity.message.feed.ItemContent;
-import com.example.demo.domain.entity.message.list.ListMessagePreset;
-import com.example.demo.domain.entity.message.location.LocationMessagePreset;
-import com.example.demo.domain.entity.message.text.TextMessagePreset;
+import com.example.demo.domain.entity.message.list.ListMessage;
+import com.example.demo.domain.entity.message.location.LocationMessage;
+import com.example.demo.domain.entity.message.text.TextMessage;
 import com.example.demo.domain.repository.*;
 import com.example.demo.domain.service.kakao.message.json.commerce.CommerceObject;
 import com.example.demo.domain.service.kakao.message.json.feed.FeedObject;
@@ -23,124 +23,124 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MessagePresetServiceImpl implements MessagePresetService{
-  private final FeedMessagePresetRepository feedMessagePresetRepository;
-  private final ListMessagePresetRepository listMessagePresetRepository;
-  private final LocationMessagePresetRepository locationMessagePresetRepository;
-  private final CommerceMessagePresetRepository commerceMessagePresetRepository;
-  private final TextMessagePresetRepository textMessagePresetRepository;
+public class MessagePresetServiceImpl implements MessagePresetService {
+  private final FeedMessageRepository feedMessageRepository;
+  private final ListMessageRepository listMessageRepository;
+  private final LocationMessageRepository locationMessageRepository;
+  private final CommerceMessageRepository commercemessageRepository;
+  private final TextMessageRepository textMessageRepository;
   private final ButtonRepository buttonRepository;
   private final ContentRepository contentRepository;
   private final CommerceRepository commerceRepository;
   private final ModelMapper modelMapper;
   @Override
-  public void savePreset(MessagePreset messagePreset, String template) {
+  public void savePreset(Message message, String template) {
     switch (template) {
-      case "feed": createFeedMessagePreset((FeedMessagePreset) messagePreset); break;
-      case "list": createListMessagePreset((ListMessagePreset) messagePreset); break;
-      case "location": createLocationMessagePreset((LocationMessagePreset) messagePreset); break;
-      case "commerce": createCommerceMessagePreset((CommerceMessagePreset) messagePreset); break;
-      case "text": createTextMessagePreset((TextMessagePreset) messagePreset); break;
+      case "feed": createfeedMessage((FeedMessage) message); break;
+      case "list": createlistMessage((ListMessage) message); break;
+      case "location": createlocationMessage((LocationMessage) message); break;
+      case "commerce": createCommercemessage((CommerceMessage) message); break;
+      case "text": createtextMessage((TextMessage) message); break;
     }
   }
 
   @Override
   public List<FeedObject> getFeedPresetList(Long userId) {
-    List<FeedMessagePreset> findList = feedMessagePresetRepository.findAllByUserId(userId);
+    List<FeedMessage> findList = feedMessageRepository.findAllByUserId(userId);
     return modelMapper.map(findList, new TypeToken<List<FeedObject>>() {}.getType());
   }
 
   @Override
   public List<ListObject> getListPresetList(Long userId) {
-    List<ListMessagePreset> findList = listMessagePresetRepository.findAllByUserId(userId);
+    List<ListMessage> findList = listMessageRepository.findAllByUserId(userId);
     return modelMapper.map(findList, new TypeToken<List<ListObject>>() {}.getType());
   }
 
   @Override
   public List<LocationObject> getLocationPresetList(Long userId) {
-    List<LocationMessagePreset> findList = locationMessagePresetRepository.findAllByUserId(userId);
+    List<LocationMessage> findList = locationMessageRepository.findAllByUserId(userId);
     return modelMapper.map(findList, new TypeToken<List<LocationObject>>() {}.getType());
   }
 
   @Override
   public List<CommerceObject> getCommercePresetList(Long userId) {
-    List<CommerceMessagePreset> findList = commerceMessagePresetRepository.findAllByUserId(userId);
+    List<CommerceMessage> findList = commercemessageRepository.findAllByUserId(userId);
     return modelMapper.map(findList, new TypeToken<List<LocationObject>>() {}.getType());
   }
 
   @Override
   public List<TextObject> getTextPresetList(Long userId) {
-    List<TextMessagePreset> findList = textMessagePresetRepository.findAllByUserId(userId);
+    List<TextMessage> findList = textMessageRepository.findAllByUserId(userId);
     return modelMapper.map(findList, new TypeToken<List<TextObject>>() {}.getType());
   }
 
-  private void createFeedMessagePreset(FeedMessagePreset feedMessagePreset) {
-    Link contentLink = feedMessagePreset.getContent().getLink();
-    contentLink.setContent(feedMessagePreset.getContent());
+  private void createfeedMessage(FeedMessage feedMessage) {
+    Link contentLink = feedMessage.getContent().getLink();
+    contentLink.setContent(feedMessage.getContent());
 
-    ItemContent itemContent = feedMessagePreset.getItemContent();
+    ItemContent itemContent = feedMessage.getItemContent();
     for (Item item : itemContent.getItems()) {
       item.setItemContent(itemContent);
     }
 
-    feedMessagePreset.getSocial().setFeedMessagePreset(feedMessagePreset);
-    for (Button button : feedMessagePreset.getButtons()) {
-      button.setFeedMessagePreset(feedMessagePreset);
+    feedMessage.getSocial().setFeedMessage(feedMessage);
+    for (Button button : feedMessage.getButtons()) {
+      button.setFeedMessage(feedMessage);
     }
 
-    feedMessagePresetRepository.save(feedMessagePreset);
+    feedMessageRepository.save(feedMessage);
 
-    List<Button> buttons = feedMessagePreset.getButtons();
+    List<Button> buttons = feedMessage.getButtons();
     buttonRepository.saveAll(buttons);
 
   }
 
-  private void createListMessagePreset(ListMessagePreset listMessagePreset) {
-    List<Content> contents = listMessagePreset.getContents();
+  private void createlistMessage(ListMessage listMessage) {
+    List<Content> contents = listMessage.getContents();
     for (Content content : contents) {
-      content.setListMessagePreset(listMessagePreset);
+      content.setListMessage(listMessage);
     }
     contentRepository.saveAll(contents);
 
-    List<Button> buttons = listMessagePreset.getButtons();
+    List<Button> buttons = listMessage.getButtons();
     for (Button button : buttons) {
-      button.setListMessagePreset(listMessagePreset);
+      button.setListMessage(listMessage);
     }
     buttonRepository.saveAll(buttons);
 
-    listMessagePresetRepository.save(listMessagePreset);
+    listMessageRepository.save(listMessage);
   }
 
-  private void createLocationMessagePreset(LocationMessagePreset locationMessagePreset) {
-    List<Button> buttons = locationMessagePreset.getButtons();
+  private void createlocationMessage(LocationMessage locationMessage) {
+    List<Button> buttons = locationMessage.getButtons();
     for (Button button : buttons) {
-      button.setLocationMessagePreset(locationMessagePreset);
+      button.setLocationMessage(locationMessage);
     }
 
-    locationMessagePresetRepository.save(locationMessagePreset);
+    locationMessageRepository.save(locationMessage);
 
     buttonRepository.saveAll(buttons);
   }
 
-  private void createCommerceMessagePreset(CommerceMessagePreset commerceMessagePreset) {
-    commerceMessagePresetRepository.save(commerceMessagePreset);
+  private void createCommercemessage(CommerceMessage commerceMessage) {
+    commercemessageRepository.save(commerceMessage);
 
-    Content content = commerceMessagePreset.getContent();
-    content.setCommerceMessagePreset(commerceMessagePreset);
+    Content content = commerceMessage.getContent();
+    content.setCommerceMessage(commerceMessage);
     contentRepository.save(content);
 
-    Commerce commerce = commerceMessagePreset.getCommerce();
-    commerce.setCommerceMessagePreset(commerceMessagePreset);
+    Commerce commerce = commerceMessage.getCommerce();
+    commerce.setCommerceMessage(commerceMessage);
     commerceRepository.save(commerce);
 
-    List<Button> buttons = commerceMessagePreset.getButtons();
+    List<Button> buttons = commerceMessage.getButtons();
     for (Button button : buttons) {
-      button.setCommerceMessagePreset(commerceMessagePreset);
+      button.setCommerceMessage(commerceMessage);
     }
     buttonRepository.saveAll(buttons);
   }
 
-  private void createTextMessagePreset(TextMessagePreset textMessagePreset) {
-    textMessagePresetRepository.save(textMessagePreset);
+  private void createtextMessage(TextMessage textMessage) {
+    textMessageRepository.save(textMessage);
   }
 }

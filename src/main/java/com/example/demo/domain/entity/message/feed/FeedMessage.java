@@ -2,7 +2,7 @@ package com.example.demo.domain.entity.message.feed;
 
 import com.example.demo.domain.entity.message.common.Button;
 import com.example.demo.domain.entity.message.common.Content;
-import com.example.demo.domain.entity.message.common.MessagePreset;
+import com.example.demo.domain.entity.message.common.Message;
 import com.example.demo.domain.entity.message.common.Social;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @DiscriminatorValue("feed")
-public class FeedMessagePreset extends MessagePreset {
+public class FeedMessage extends Message {
   @JoinColumn(name = "content_id")
   @OneToOne(cascade = CascadeType.ALL)
   @ToString.Exclude
@@ -25,8 +25,8 @@ public class FeedMessagePreset extends MessagePreset {
   @ToString.Exclude
   private ItemContent itemContent;
 
-  @OneToOne(mappedBy = "feedMessagePreset",  cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "feedMessage",  cascade = CascadeType.ALL)
   private Social social;
-  @OneToMany(mappedBy = "feedMessagePreset")
+  @OneToMany(mappedBy = "feedMessage")
   private List<Button> buttons;
 }
