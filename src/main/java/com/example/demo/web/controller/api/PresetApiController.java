@@ -11,7 +11,7 @@ import com.example.demo.domain.service.kakao.message.json.feed.FeedObject;
 import com.example.demo.domain.service.kakao.message.json.list.ListObject;
 import com.example.demo.domain.service.kakao.message.json.location.LocationObject;
 import com.example.demo.domain.service.kakao.message.json.text.TextObject;
-import com.example.demo.domain.service.kakao.preset.MessageService;
+import com.example.demo.domain.service.kakao.preset.MessagePresetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +23,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/preset")
 public class PresetApiController {
-  private final MessageService messageService;
+  private final MessagePresetService messagePresetService;
 
   @PostMapping("/feed/save")
   public HttpEntity<?> saveFeedPreset(User user, @RequestBody FeedMessage feedMessage) {
     feedMessage.setUser(user);
     feedMessage.setPurpose("preset");
 
-    messageService.savePreset(feedMessage, "feed");
+    messagePresetService.savePreset(feedMessage, "feed");
     return ResponseEntity.ok().build();
   }
 
   @GetMapping("/feed/list")
   public List<FeedObject> getFeedPreset(User user) {
-    return messageService.getFeedPresetList(user.getId());
+    return messagePresetService.getFeedPresetList(user.getId());
   }
 
   @PostMapping("/list/save")
@@ -44,13 +44,13 @@ public class PresetApiController {
     listMessage.setUser(user);
     listMessage.setPurpose("preset");
 
-    messageService.savePreset(listMessage, "list");
+    messagePresetService.savePreset(listMessage, "list");
     return ResponseEntity.ok().build();
   }
 
   @GetMapping("/list/list")
   public List<ListObject> getListPreset(User user) {
-    return messageService.getListPresetList(user.getId());
+    return messagePresetService.getListPresetList(user.getId());
   }
 
   @PostMapping("/location/save")
@@ -58,13 +58,13 @@ public class PresetApiController {
     locationMessage.setUser(user);
     locationMessage.setPurpose("preset");
 
-    messageService.savePreset(locationMessage, "location");
+    messagePresetService.savePreset(locationMessage, "location");
     return ResponseEntity.ok().build();
   }
 
   @GetMapping("/location/list")
   public List<LocationObject> getLocationPreset(User user) {
-    return messageService.getLocationPresetList(user.getId());
+    return messagePresetService.getLocationPresetList(user.getId());
   }
 
   @PostMapping("/commerce/save")
@@ -72,13 +72,13 @@ public class PresetApiController {
     commerceMessage.setUser(user);
     commerceMessage.setPurpose("preset");
 
-    messageService.savePreset(commerceMessage, "commerce");
+    messagePresetService.savePreset(commerceMessage, "commerce");
     return ResponseEntity.ok().build();
   }
 
   @GetMapping("/commerce/list")
   public List<CommerceObject> getCommercePresetList(User user) {
-    return messageService.getCommercePresetList(user.getId());
+    return messagePresetService.getCommercePresetList(user.getId());
   }
 
   @PostMapping("/text/save")
@@ -86,13 +86,12 @@ public class PresetApiController {
     textMessage.setUser(user);
     textMessage.setPurpose("preset");
 
-    messageService.savePreset(textMessage, "text");
+    messagePresetService.savePreset(textMessage, "text");
     return ResponseEntity.ok().build();
   }
 
   @GetMapping("/text/list")
   public List<TextObject> getTextPresetList(User user) {
-    return messageService.getTextPresetList(user.getId());
+    return messagePresetService.getTextPresetList(user.getId());
   }
-
 }

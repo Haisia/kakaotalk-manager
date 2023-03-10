@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CommercemessageRepository extends JpaRepository<CommerceMessage, Long> {
+public interface CommerceMessageRepository extends JpaRepository<CommerceMessage, Long> {
   List<CommerceMessage> findAllByUserId(Long userId);
 }

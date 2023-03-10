@@ -23,11 +23,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MessageServiceImpl implements MessageService{
+public class MessagePresetServiceImpl implements MessagePresetService {
   private final FeedMessageRepository feedMessageRepository;
   private final ListMessageRepository listMessageRepository;
   private final LocationMessageRepository locationMessageRepository;
-  private final CommercemessageRepository commercemessageRepository;
+  private final CommerceMessageRepository commercemessageRepository;
   private final TextMessageRepository textMessageRepository;
   private final ButtonRepository buttonRepository;
   private final ContentRepository contentRepository;

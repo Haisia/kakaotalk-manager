@@ -9,7 +9,7 @@ import com.example.demo.domain.service.kakao.message.json.text.TextObject;
 
 import java.util.List;
 
-public interface MessageService {
+public interface MessagePresetService {
   void savePreset(Message message, String template);
   List<FeedObject> getFeedPresetList(Long userId);
   List<ListObject> getListPresetList(Long userId);
