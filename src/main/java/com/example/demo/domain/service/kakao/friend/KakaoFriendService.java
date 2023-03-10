@@ -8,16 +8,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class KakaoFriendService {
-    public FriendResponse getFriendsTest (User user, int start, int end) {
-        WebClient webClient = WebClient.builder()
-                .baseUrl("https://kapi.kakao.com")
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + user.getAccessToken())
-                .build();
+  public FriendResponse getFriendsTest(User user) {
+    WebClient webClient = WebClient.builder()
+            .baseUrl("https://kapi.kakao.com")
+            .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + user.getAccessToken())
+            .build();
 
-        return webClient.get()
-                .uri("/v1/api/talk/friends")
-                .retrieve()
-                .bodyToMono(FriendResponse.class)
-                .block();
-    }
+    return webClient.get()
+            .uri("/v1/api/talk/friends")
+            .retrieve()
+            .bodyToMono(FriendResponse.class)
+            .block();
+  }
 }
