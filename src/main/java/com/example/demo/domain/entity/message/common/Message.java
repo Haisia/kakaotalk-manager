@@ -11,7 +11,7 @@ import lombok.ToString;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "objectType")
-public abstract class MessagePreset {
+public abstract class Message {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -23,4 +23,7 @@ public abstract class MessagePreset {
 
   @Column(name = "name")
   private String name;
+
+  @Column(name = "purpose")
+  private String purpose;
 }

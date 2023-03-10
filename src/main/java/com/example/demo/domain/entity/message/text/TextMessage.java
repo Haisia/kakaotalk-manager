@@ -1,7 +1,7 @@
 package com.example.demo.domain.entity.message.text;
 
 import com.example.demo.domain.entity.message.common.Link;
-import com.example.demo.domain.entity.message.common.MessagePreset;
+import com.example.demo.domain.entity.message.common.Message;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @DiscriminatorValue("text")
-public class TextMessagePreset extends MessagePreset {
+public class TextMessage extends Message {
   private String text;
 
   @OneToOne(cascade = CascadeType.ALL)
